@@ -1,0 +1,296 @@
+* {
+    box-sizing: border-box;
+    margin: 0 auto;
+    font-family: Helvetica;
+}
+
+@media (max-width: 992px) {
+    .flex-container {
+        flex-direction: column;
+        width: 70vw !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .flex-container {
+        flex-direction: column;
+        width: 90vw !important;
+    }
+}
+
+.flex-container {
+    padding-top: 50px;
+    width: 60vw;
+    display: flex;
+}
+
+.col-4 {
+    flex: 4;
+    margin: 10px;
+}
+
+.col-2 {
+    flex: 2;
+}
+
+.col-1 {
+    flex: 1;
+}
+
+.row {
+    display: flex;
+}
+
+.left-element {
+    padding-right: 5px;
+    margin: 0;
+    width: 50%;
+}
+
+.material-icons {
+    color: white;
+    padding-left: 15px;
+}
+
+.right-element {
+    margin: 0;
+    width: 50%;
+}
+
+.section-label {
+    border-radius: 4px;
+    height: 44px;
+    background-color: #a89f8f;
+    display: flex;
+    align-items: center;
+}
+
+.title {
+    width: 100%;
+    padding: 0px 10px;
+    color: white;
+    font-size: 15px;
+}
+
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0px;
+}
+
+.radio-row {
+    padding: 0px 10px;
+    margin: 5px 0px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-row {
+    padding: 0px 10px;
+    margin: 5px 0px;
+    width: 100%;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    padding: 0px 10px;
+    width: 100%;
+    margin: 10px 0px;
+    border-radius: 4px;
+    border: 1px solid #a89f8f;
+    outline-color: #a89f8f;
+    font-size: 15px;
+    height: 36px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    margin: 0;
+    border: 0px;
+    width: 8%;
+    height: 2em;
+    accent-color: #e54444;
+}
+
+textarea {
+    width: 100%;
+    border-radius: 4px;
+    padding: 14px 20px;
+    margin: 20px 0px;
+    height: 70px;
+    outline-color: #a89f8f;
+}
+
+.login-btn {
+    margin: 10px 0px;
+    width: 100%;
+    height: 40px;
+    background-color: white;
+    color: #e54444;
+    border: 2px solid #e54444;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.rabat-btn {
+    margin: 10px 0px;
+    width: 100%;
+    height: 40px;
+    background-color: white;
+    color: #a89f8f;
+    border: 2px solid #a89f8f;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.submit-btn {
+    margin: 10px 0px;
+    width: 100%;
+    height: 70px;
+    background-color: #e54444;
+    color: white;
+    border: 2px solid #e54444;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.login-label {
+    text-align: center;
+    font-size: 13px;
+}
+
+.products {
+    padding: 20px 0px;
+}
+
+.cost {
+    padding: 5px 0px;
+}
+
+.new-account {
+    margin: 10px 0px;
+    display: flex;
+    align-items: center;
+}
+
+.new-account-label {
+    margin: 0 7px;
+    font-size: 15px;
+}
+
+.shipping_data_checkbox {
+    margin: 10px 0px;
+    display: flex;
+    align-items: center;
+}
+
+.shipping_data_label {
+    margin: 0 7px;
+    font-size: 15px;
+}
+
+.responsive {
+    width: auto;
+    height: 40px;
+}
+
+.shipping-logo {
+    margin: 0;
+    padding: 0px 5px;
+}
+
+.payment-logo {
+    margin: 0;
+    padding: 0px 5px;
+}
+
+.shipping_method_label {
+    margin: 0 7px;
+    font-size: 15px;
+}
+
+.shipping-price {
+    margin: 0;
+    margin-left: auto;
+    font-weight: bold;
+}
+
+.payment-label {
+    margin: 0 7px;
+    font-size: 15px;
+}
+
+.payment-info {
+    padding: 25px 0px;
+}
+
+.product {
+    display: flex;
+}
+
+.product-logo {
+    margin: 0;
+    padding: 0px 5px;
+}
+
+.product-info {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    width: 100%;
+}
+
+.col-1 {
+    flex: 1;
+    margin: 0;
+}
+
+.product-name {
+    font-weight: bold;
+    margin: 0;
+}
+
+.product-price {
+    font-weight: bold;
+    margin: 0;
+    margin-left: auto;
+}
+
+.policy {
+    margin: 10px 0px;
+    display: flex;
+    align-items: center;
+}
+
+.policy-label {
+    margin: 0 7px;
+    font-size: 15px;
+}
+
+.newsletter {
+    margin: 10px 0px;
+    display: flex;
+    align-items: center;
+}
+
+.newsletter-label {
+    margin: 0 7px;
+    font-size: 15px;
+}
+
+.is-danger {
+    color: red;
+    font-size: 12px;
+}
+
+.message {
+    margin: 15px 0;
+    font-size: 16px;
+    color: #e54444;
+    text-align: center;
+}

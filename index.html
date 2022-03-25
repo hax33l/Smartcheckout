@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <title>SmartCheckout</title>
+</head>
+<body>
+    <div id="order-form" class="flex-container">
+        <div class="col-4">
+            <div class="section-label">
+                <i class="material-icons">person</i><p class="title">1. TWOJE DANE</p>
+            </div>
+            <input class="login-btn" type="button" value="Logowanie" onclick="console.log('Login')">
+            <p class="login-label">Masz już konto? Kliknij żeby się zalogować</p>
+            <div class="new-account">
+                <input type="checkbox" id="new_account" name="new_account" value="1" v-model="formData.create_account">
+                <label class="new-account-label" for="new_account">Stwórz nowe konto</label>
+            </div>
+            <div>
+                <div v-if="formData.create_account">
+                    <input type="text" name="username" placeholder="Nazwa użytkownika" v-model="formData.username" />
+                    <input type="password" name="password" placeholder="Hasło" v-model="formData.password" />
+                    <input type="password" name="confirm_password" placeholder="Potwierdź hasło"
+                        v-model="formData.confirm_password" />
+                </div>
+                <input type="text" name="first_name" placeholder="Imię*" v-model="formData.first_name" />
+                <input type="text" name="last_name" placeholder="Nazwisko*" v-model="formData.last_name" />
+                <input type="email" name="email" placeholder="Email*" v-model="formData.email" />
+                <input type="text" name="billing_country" placeholder="Kraj*" v-model="formData.billing_country" />
+                <input type="text" name="billing_address" placeholder="Adres*" v-model="formData.billing_address" />
+                <div class="row">
+                    <div class="left-element">
+                        <input type="text" name="billing_postal_code" placeholder="Kod pocztowy*"
+                            v-model="formData.billing_postal_code" />
+                    </div>
+                    <div class="right-element">
+                        <input type="text" name="billing_city" placeholder="Miasto*" v-model="formData.billing_city" />
+                    </div>
+                </div>
+                <input type="text" name="phone" placeholder="Telefon*" v-model="formData.phone" />
+                <div class="shipping_data_checkbox">
+                    <input type="checkbox" id="shipping_data" name="shipping_data" value="1" v-model="shipping_data">
+                    <label class="shipping_data_label" for="shipping_data">Dostawa pod inny adres</label>
+                </div>
+                <div v-if="shipping_data">
+                    <input type="text" name="shipping_country" placeholder="Kraj*"
+                        v-model="formData.shipping_country" />
+                    <input type="text" name="shipping_address" placeholder="Adres*"
+                        v-model="formData.shipping_address" />
+                    <div class="row">
+                        <div class="left-element"><input type="text" name="shipping_postal_code"
+                                placeholder="Kod pocztowy*" v-model="formData.shipping_postal_code" />
+                        </div>
+                        <div class="right-element">
+                            <input type="text" name="shipping_city" placeholder="Miasto*"
+                                v-model="formData.shipping_city" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-4">
+            <div class="section-label">
+                <i class="material-icons">local_shipping</i><p class="title">2. METODA DOSTAWY</p>
+            </div>
+            <div class="radio-group">
+                <div class="radio-row" v-on:change="loadPaymentOptions" v-for="shipping_method in shipping_methods">
+                    <input type="radio" :id="shipping_method.name" name="shipping" :value="shipping_method.id"
+                        v-model="formData.shipping_id">
+                    <img :src="shipping_method.image" :alt="shipping_method.name " class="responsive shipping-logo">
+                    <label class="shipping_method_label" :for="shipping_method.name">{{ shipping_method.name }}</label>
+                    <p class="shipping-price">{{ shipping_method.price }} zł</p>
+                </div>
+            </div>
+            <div class="section-label">
+                <i class="material-icons">payment</i><p class="title">3. METODA PŁATNOŚCI</p>
+            </div>
+            <div class="payment-info" v-if="!payment_methods.length">
+                Proszę wybrać metodę dostawy.
+            </div>
+            <div class="radio-group" v-for="payment_method in payment_methods">
+                <div class="radio-row">
+                    <input type="radio" :id="payment_method.name" name="payment" :value="payment_method.id"
+                        v-model="formData.payment_id">
+                    <img :src="payment_method.image" :alt="payment_method.name " class="responsive payment-logo">
+                    <label class="payment-label" :for="payment_method.name">{{ payment_method.name }}</label>
+                </div>
+            </div>
+            <input class="rabat-btn" type="button" value="Dodaj kod rabatowy" onclick="console.log('Kod rabatowy')">
+        </div>
+        <div class="col-4">
+            <div class="section-label ">
+                <i class="material-icons">event_note</i><p class="title">4. PODSUMOWANIE</p>
+            </div>
+            <div class="summary-section ">
+                <div class="products">
+                    <div class="product" v-for="product in products">
+                        <img :src="product.image" :alt="product.name " class="responsive product-logo">
+                        <div class="product-info">
+                            <div class="col-1">
+                                <div class="row">
+                                    <p class="product-name">{{ product.name }}</p>
+                                    <p class="product-price"> {{ product.price }} zł</p>
+                                </div>
+                            </div>
+                            <div class="col-1">
+                                <p>Ilość: {{ product.quantity }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cost">
+                    <p>Suma częściowa: {{ total_cost }} zł</p>
+                    <p><b>Łącznie: {{ total_cost }} zł</b></p>
+                </div>
+            </div>
+            <div>
+                <form id="order-form">
+                    <textarea name="comment" placeholder="Komentarz" form="order-form"
+                        v-model="formData.comment"></textarea>
+                </form>
+                <div class="newsletter">
+                    <input type="checkbox" id="newsletter" name="newsletter" value="1" v-model="formData.newsletter">
+                    <label class="newsletter-label" for="newsletter">Zapisz się, aby otrzymywać newsletter</label>
+                </div>
+                <div class="policy">
+                    <input type="checkbox" id="policy" name="policy" value="1" v-model="policy">
+                    <label class="policy-label" for="policy">Zapoznałam/em się z Regulaminem zakupów*</label>
+                </div>
+                <input class="submit-btn" type="submit" value="POTWIERDŹ ZAKUP" @click="processForm()">
+                <p class="message" v-if="message">{{message}}</p>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"></script>
+<script src="app.js"></script>
+</html>
