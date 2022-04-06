@@ -19,7 +19,7 @@ if ($conn->query($sql) === TRUE) {
 $conn->select_db($db_name);
 
 $sql_create_table_queries = [
-    "Users" => "CREATE TABLE Users (
+    "users" => "CREATE TABLE users (
         id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         username VARCHAR(16) NOT NULL,
         email VARCHAR(254) NOT NULL,
@@ -34,7 +34,7 @@ $sql_create_table_queries = [
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         modified_at TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP
     )",
-    "Products" => "CREATE TABLE Products (
+    "products" => "CREATE TABLE products (
         id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
         description VARCHAR(255),
@@ -43,7 +43,7 @@ $sql_create_table_queries = [
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         modified_at TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP
     )",
-    "Shipping" => "CREATE TABLE Shipping (
+    "shipping" => "CREATE TABLE shipping (
         id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
         image VARCHAR(255),
@@ -51,14 +51,14 @@ $sql_create_table_queries = [
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         modified_at TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP
     )",
-    "Payment" => "CREATE TABLE Payment (
+    "payment" => "CREATE TABLE payment (
         id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
         image VARCHAR(255),
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         modified_at TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP
     )",
-    "Shipping_Payment" => "CREATE TABLE Shipping_Payment (
+    "shipping_payment" => "CREATE TABLE shipping_payment (
         id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         shipping_id INT(10) UNSIGNED NOT NULL,
         payment_id INT(10) UNSIGNED NOT NULL,
@@ -67,7 +67,7 @@ $sql_create_table_queries = [
         FOREIGN KEY (shipping_id) REFERENCES Shipping(id),
         FOREIGN KEY (payment_id) REFERENCES Payment(id)
     )",
-    "Orders" => "CREATE TABLE Orders (
+    "orders" => "CREATE TABLE orders (
         id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         first_name VARCHAR(50) NOT NULL,
         last_name VARCHAR(50) NOT NULL,
@@ -89,7 +89,7 @@ $sql_create_table_queries = [
         FOREIGN KEY (shipping_id) REFERENCES Shipping(id),
         FOREIGN KEY (payment_id) REFERENCES Payment(id)
     )",
-    "Order_product" => "CREATE TABLE Order_product (
+    "order_product" => "CREATE TABLE order_product (
         id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         order_id INT(10) UNSIGNED NOT NULL,
         product_id INT(10) UNSIGNED NOT NULL,
@@ -99,13 +99,13 @@ $sql_create_table_queries = [
         FOREIGN KEY (order_id) REFERENCES Orders(id),
         FOREIGN KEY (product_id) REFERENCES Products(id)
     )",
-    "Newsletter" => "CREATE TABLE Newsletter (
+    "newsletter" => "CREATE TABLE newsletter (
         id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         email VARCHAR(254) NOT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         modified_at TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP
     )",
-    "User_order" => "CREATE TABLE User_order (
+    "user_order" => "CREATE TABLE user_order (
         id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         user_id INT(10) UNSIGNED NOT NULL,
         order_id INT(10) UNSIGNED NOT NULL,

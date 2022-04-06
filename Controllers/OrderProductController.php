@@ -17,7 +17,7 @@ class OrderProductController
                 VALUES ('$order_product->order_id','$order_product->product_id','$order_product->quantity')";
 
             if ($mysqliConn->query($sql_query) === TRUE) {
-                $order_product->id = $mysqliConn->insert_id;
+                return $mysqliConn->insert_id;
             }
         }
     }
